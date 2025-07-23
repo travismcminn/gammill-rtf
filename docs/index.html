@@ -11,7 +11,7 @@
       margin: 0;
       font-family: 'Montserrat', sans-serif;
       background-color: #f4f7f4;
-      color: #dc0032;
+      color: #333;
     }
 
     .top-banner {
@@ -70,16 +70,26 @@
       object-fit: cover;
     }
 
-    .contact-info h4,
-    .contact-info p,
-    .contact-info a {
+    .contact-info h4 {
+      margin: 0;
       color: #dc0032;
+    }
+
+    .contact-info p {
+      margin: 4px 0 8px 0;
+      font-size: 0.95rem;
+      color: #333;
     }
 
     .contact-info a {
       text-decoration: none;
       display: block;
       font-size: 0.9rem;
+      color: #1a8c95;
+    }
+
+    .highlight {
+      color: #dc0032;
     }
 
     .review-block {
@@ -94,6 +104,11 @@
     .review-block p {
       font-style: italic;
       margin: 0;
+      color: #444;
+    }
+
+    .review-block strong {
+      color: #dc0032;
     }
 
     .estimator-term-row {
@@ -152,8 +167,8 @@
           <div class="contact-box" style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
             <img src="https://cdn.shopify.com/s/files/1/0878/0608/3384/files/alayna.png?v=1753309706" alt="Alayna Pederson">
             <div class="contact-info">
-              <h4 style="margin: 0;">Questions ❓</h4>
-              <p style="margin: 4px 0 8px 0; font-size: 0.95rem;"><strong>Alayna Pederson</strong>, Red Thread Financial</p>
+              <h4>Questions ❓</h4>
+              <p><strong>Alayna Pederson</strong>, Red Thread Financial</p>
               <a href="mailto:alayna@financewithafp.com">📧 alayna@financewithafp.com</a>
               <a href="tel:6052725901">📞 605-272-5901</a>
             </div>
@@ -161,14 +176,14 @@
 
           <hr style="border: none; border-top: 1px solid #dcdcdc; margin-bottom: 16px;">
 
-          <h4 style="margin-top: 0;">🧮 Estimate Your Monthly Payment</h4>
+          <h4 class="highlight">🧮 Estimate Your Monthly Payment</h4>
           <label for="equipmentSlider" style="display: block; margin-bottom: 6px;">
             Equipment Cost: <span id="equipmentValue">$50,000</span>
           </label>
           <input type="range" id="equipmentSlider" min="5000" max="250000" step="1000" value="50000">
           <div id="paymentResults" style="margin-top: 12px;"></div>
 
-          <h5 style="margin-top: 24px;">What Customers Are Saying:</h5>
+          <h5 style="margin-top: 24px;" class="highlight">What Customers Are Saying:</h5>
           <div id="afp-reviews" class="review-flex" style="min-height: 80px;"></div>
         </div>
 
@@ -196,7 +211,7 @@
         const payment = equipmentCost * factor;
         results += `
           <div class="estimator-term-row">
-            <strong>${term} months:</strong> <span>${formatCurrency(payment.toFixed(2))} / month</span>
+            <strong class="highlight">${term} months:</strong> <span>${formatCurrency(payment.toFixed(2))} / month</span>
           </div>
         `;
       }
@@ -242,4 +257,5 @@
   </script>
 </body>
 </html>
+
 
