@@ -232,19 +232,20 @@
     let autoIndex = 0;
 
     function renderReviews(index) {
-      const isMobile = window.innerWidth <= 1024;
-      let html = '';
-      const count = isMobile ? 1 : 2;
-      for (let i = 0; i < count; i++) {
-        const r = reviews[(index + i) % reviews.length];
-        html += `
-          <div class="review-block">
-            <p>“${r.text}”<br><strong>– ${r.name}</strong></p>
-          </div>
-        `;
-      }
-      reviewContainer.innerHTML = html;
-    }
+  const isMobile = window.innerWidth <= 1024;
+  let html = '';
+  const count = isMobile ? 1 : 2;
+  for (let i = 0; i < count; i++) {
+    const r = reviews[(index + i) % reviews.length];
+    html += `
+      <div class="review-block">
+        <p>“${r.text}”<br><strong>– ${r.name}</strong></p>
+      </div>
+    `;
+  }
+  reviewContainer.innerHTML = html;
+}
+
 
     window.addEventListener('resize', () => renderReviews(autoIndex));
     setInterval(() => renderReviews(autoIndex++), 6000);
