@@ -7,15 +7,27 @@
   <link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/0878/0608/3384/files/AFP-FULL.png?v=1753306439">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --afp-green: #1a4120;
+      --afp-ink: #1a4120;
+      --afp-bg: #f4f7f4;
+      --card-bg: #ffffff;
+      --muted: #6a7a6d;
+      --line: #dcdcdc;
+      --accent: #e07c00;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background-color: #f4f7f4;
-      color: #1a4120;
+      background-color: var(--afp-bg);
+      color: var(--afp-ink);
     }
 
     .top-banner {
-      background: #1a4120;
+      background: var(--afp-green);
       color: #fff;
       padding: 10px 16px;
       font-size: 0.9rem;
@@ -37,10 +49,7 @@
       margin-bottom: 24px;
     }
 
-    .co-brand-bar img {
-      max-height: 48px;
-      height: auto;
-    }
+    .co-brand-bar img { max-height: 48px; height: auto; }
 
     .afp-flex-wrap {
       display: flex;
@@ -53,78 +62,76 @@
       width: 50%;
       display: flex;
       flex-direction: column;
+      gap: 16px; /* spacing between stacked cards */
     }
 
-    .afp-wrapper {
-      justify-content: space-between;
-      background: #ffffff;
-      padding: 16px;
+    .card {
+      background: var(--card-bg);
       border-radius: 12px;
+      padding: 16px 20px;
       box-shadow: 0 2px 6px rgba(26, 65, 32, 0.1);
     }
 
+    /* Make the top card in each column flex so bottoms align */
+    .card-grow { flex: 1 1 auto; min-height: 0; }
+
+    .afp-wrapper { justify-content: space-between; }
+
+    .contact-box { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+
     .contact-box img {
       border-radius: 10px;
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      background: white;
-      padding: 6px;
+      width: 60px; height: 60px; object-fit: contain;
+      background: #fff; padding: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
-    .contact-info h4,
-    .contact-info p,
-    .contact-info a {
-      color: #1a4120;
-    }
+    .contact-info h4, .contact-info p, .contact-info a { color: var(--afp-ink); }
+    .contact-info h4 { margin: 0; }
+    .contact-info p { margin: 4px 0 8px 0; }
+    .contact-info a { text-decoration: none; display: block; font-size: 0.9rem; }
 
-    .contact-info a {
-      text-decoration: none;
-      display: block;
-      font-size: 0.9rem;
-    }
-
+    /* Reviews */
+    .review-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .review-block {
       background: #ffffff;
-      border-left: 4px solid #e07c00;
+      border-left: 4px solid var(--accent);
       border-radius: 8px;
       padding: 12px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      margin-bottom: 12px;
     }
+    .review-block p { font-style: italic; margin: 0; font-size: 0.85rem; line-height: 1.4; }
 
-    .review-block p {
-      font-style: italic;
-      margin: 0;
-      font-size: 0.85rem;
-      line-height: 1.4;
-    }
+    /* Approval Roadmap */
+    .roadmap { margin-top: 8px; }
+    .steps { list-style: none; padding: 0; margin: 0; }
+    .step { display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .step:last-child { border-bottom: none; }
+    .badge { width: 36px; height: 36px; border-radius: 8px; background: rgba(26,65,32,0.08); display: grid; place-items: center; font-weight: 600; }
+    .step h5 { margin: 0 0 6px 0; font-size: 1rem; }
+    .step p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
 
-    .estimator-term-row {
-      padding: 6px 0;
-      border-bottom: 1px solid #e0e0e0;
-    }
+    .help-text { font-size: 0.78rem; color: var(--muted); margin-top: 12px; }
 
-    .estimator-term-row:last-child {
-      border-bottom: none;
-    }
+    hr { border: none; border-top: 1px solid var(--line); margin: 16px 0; }
 
-    input[type="range"] {
-      width: 100%;
-    }
+    /* CTA buttons in their own card under the form */
+    .cta-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 1px solid var(--afp-green); }
+    .btn-primary { background: var(--afp-green); color: #fff; border-color: var(--afp-green); }
+    .btn-outline { background: #fff; color: var(--afp-green); }
+    .btn:focus { outline: 2px solid rgba(26,65,32,0.3); outline-offset: 2px; }
 
     @media (max-width: 1024px) {
       .afp-flex-wrap { flex-direction: column; }
       .afp-col { width: 100%; }
-      .review-flex { flex-direction: column; }
+      .review-flex { grid-template-columns: 1fr; }
+      .card-grow { flex: none; }
     }
   </style>
 </head>
 <body>
-
-  <div class="top-banner">
-    A Financing Partnership Powered by American Financial Partners
-  </div>
+  <div class="top-banner">A Financing Partnership Powered by American Financial Partners</div>
 
   <div class="container">
     <div class="co-brand-bar">
@@ -134,9 +141,9 @@
     </div>
 
     <div class="afp-flex-wrap">
-      <!-- FORM PANEL -->
+      <!-- LEFT COLUMN: FORM (grows) + BUTTONS CARD -->
       <div class="afp-col">
-        <div style="background: #ffffff; border-radius: 12px; padding: 16px 20px; box-shadow: 0 2px 6px rgba(26, 65, 32, 0.1);">
+        <div class="card card-grow">
           <iframe
             src="https://form.jotform.com/251807213758157"
             title="Apply for Financing - Gammill"
@@ -148,104 +155,105 @@
             allow="geolocation; microphone; camera; fullscreen; payment"
           ></iframe>
         </div>
+        <div class="card">
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:alayna@financewithafp.com">Email AFP</a>
+            <a class="btn btn-outline" href="tel:8882373533">Call 888-237-3533</a>
+          </div>
+        </div>
       </div>
 
-      <!-- INFO + CALCULATOR -->
+      <!-- RIGHT COLUMN: CONTACT + ROADMAP (grows) + TESTIMONIALS CARD -->
       <div class="afp-col afp-wrapper">
-        <div>
-          <div class="contact-box" style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+        <div class="card card-grow">
+          <div class="contact-box">
             <img src="https://cdn.shopify.com/s/files/1/0878/0608/3384/files/alayna.png?v=1753309706" alt="Alayna Wagner">
             <div class="contact-info">
-              <h4 style="margin: 0;">Need Help?</h4>
-              <p style="margin: 4px 0 8px 0;"><strong>Alayna Pederson</strong></p>
+              <h4>Need Help?</h4>
+              <p><strong>Alayna Pederson</strong></p>
               <a href="mailto:alayna@financewithafp.com">📧 alayna@financewithafp.com</a>
               <a href="tel:6052725901">📞 605-272-5901</a>
             </div>
           </div>
 
-          <hr style="border: none; border-top: 1px solid #dcdcdc; margin-bottom: 16px;">
+          <hr>
 
-          <h4 style="margin-top: 0;">🧮 Estimate Your Monthly Payment</h4>
-          <label for="equipmentSlider" style="display: block; margin-bottom: 6px;">
-            Equipment Cost: <span id="equipmentValue">$50,000</span>
-          </label>
-          <input type="range" id="equipmentSlider" min="5000" max="250000" step="1000" value="50000">
-          <div id="paymentResults" style="margin-top: 12px;"></div>
-
-          <h5 style="margin-top: 16px;">What Customers Are Saying:</h5>
-<div id="afp-reviews" class="review-flex" style="min-height: 120px;"></div>
-
+          <h4 style="margin: 0 0 8px 0;">Approval Roadmap</h4>
+          <div class="roadmap">
+            <ul class="steps">
+              <li class="step">
+                <div class="badge">1</div>
+                <div>
+                  <h5>Apply online</h5>
+                  <p>Complete the short application. If anything else is needed, we’ll reach out.</p>
+                </div>
+              </li>
+              <li class="step">
+                <div class="badge">2</div>
+                <div>
+                  <h5>Credit review</h5>
+                  <p>AFP reviews your info and begins working to secure the best approval. Many approvals are same day.</p>
+                </div>
+              </li>
+              <li class="step">
+                <div class="badge">3</div>
+                <div>
+                  <h5>Approval and structure</h5>
+                  <p>Select term length and structure. Seasonal and deferred options are available for qualified customers.</p>
+                </div>
+              </li>
+              <li class="step">
+                <div class="badge">4</div>
+                <div>
+                  <h5>E-sign documents</h5>
+                  <p>Sign securely. We collect the vendor invoice and finalize the file.</p>
+                </div>
+              </li>
+              <li class="step">
+                <div class="badge">5</div>
+                <div>
+                  <h5>Fund and coordinate</h5>
+                  <p>Vendor gets paid and your equipment is on the way. Typical funding is within 24 to 72 hours of final approval.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <p style="font-size: 0.75rem; color: #1a4120; margin-top: 16px;">
-          *Estimated payments are based on standard lease factors and are for illustration only. Actual terms may vary based on credit.
-        </p>
+        <div class="card">
+          <h5 style="margin: 0 0 10px 0;">What customers are saying</h5>
+          <div id="afp-reviews" class="review-flex" style="min-height: 120px;"></div>
+          <p class="help-text">Funding and terms are subject to credit approval. Additional documents may be requested based on the specifics of your purchase.</p>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    const slider = document.getElementById('equipmentSlider');
-    const valueLabel = document.getElementById('equipmentValue');
-    const resultsBox = document.getElementById('paymentResults');
-
-    function formatCurrency(val) {
-      return `$${Number(val).toLocaleString()}`;
-    }
-
-    function calculatePayments(equipmentCost) {
-      const leaseFactors = {
-        24: 0.04703,
-        36: 0.03222,
-        48: 0.02512,
-        60: 0.02052
-      };
-      let results = '';
-      for (const term in leaseFactors) {
-        const factor = leaseFactors[term];
-        const payment = equipmentCost * factor;
-        results += `
-          <div class="estimator-term-row">
-            <strong>${term} months:</strong> <span>${formatCurrency(payment.toFixed(2))} / month</span>
-          </div>
-        `;
-      }
-      return results;
-    }
-
-    function updateCalculator() {
-      const cost = parseInt(slider.value, 10);
-      valueLabel.textContent = formatCurrency(cost);
-      resultsBox.innerHTML = calculatePayments(cost);
-    }
-
-    slider.addEventListener('input', updateCalculator);
-    updateCalculator();
-
+    // Simple rotating testimonials
     const reviews = [
-      { name: "Mike R.", text: "AFP helped me finance my equipment quickly and with no hassle." },
-      { name: "Angela T.", text: "Fantastic team! They guided me every step of the way." },
-      { name: "Sean D.", text: "Easy application and fast approval. Great experience overall." }
+      { name: "Sean D.", text: "Helpful team, quick approval, zero headaches." },
+      { name: "Mike R.", text: "AFP made financing straightforward and fast." },
+      { name: "Angela T.", text: "Clear communication and smooth process from start to finish." }
     ];
 
     const reviewContainer = document.getElementById("afp-reviews");
     let autoIndex = 0;
 
     function renderReviews(index) {
-  const isMobile = window.innerWidth <= 1024;
-  let html = '';
-  const count = isMobile ? 1 : 2;
-  for (let i = 0; i < count; i++) {
-    const r = reviews[(index + i) % reviews.length];
-    html += `
-      <div class="review-block">
-        <p>“${r.text}”<br><strong>– ${r.name}</strong></p>
-      </div>
-    `;
-  }
-  reviewContainer.innerHTML = html;
-}
-
+      const isMobile = window.innerWidth <= 1024;
+      let html = '';
+      const count = isMobile ? 1 : 2;
+      for (let i = 0; i < count; i++) {
+        const r = reviews[(index + i) % reviews.length];
+        html += `
+          <div class="review-block">
+            <p>“${r.text}”<br><strong>– ${r.name}</strong></p>
+          </div>
+        `;
+      }
+      reviewContainer.innerHTML = html;
+    }
 
     window.addEventListener('resize', () => renderReviews(autoIndex));
     setInterval(() => renderReviews(autoIndex++), 6000);
@@ -253,6 +261,7 @@
   </script>
 </body>
 </html>
+
 
 
 
